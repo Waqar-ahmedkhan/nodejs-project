@@ -3,12 +3,12 @@ import cors from  "cors"
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import compression from "compression";
-import { mongodbConnet } from "./db/database";.mongodbConnet();
+import { mongodbConnet } from "./db/database"
 
  const app = express();
 
 
- 
+ mongodbConnet();
 
 
   app.use(cors( {
