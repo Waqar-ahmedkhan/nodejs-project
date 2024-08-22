@@ -11,6 +11,7 @@ import { mongodbConnet } from "./db/database"
  mongodbConnet();
 
 
+
   app.use(cors( {
     credentials: true
   }));
@@ -23,6 +24,7 @@ import { mongodbConnet } from "./db/database"
 
   app.get("/", (req: Request, res: Response)=> {
          console.log("hello world")
+         
          res.send("hello world ")
   })
 
