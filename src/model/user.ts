@@ -14,3 +14,6 @@ const userMongoose = new mongoose.Schema({
 })
 
 export const userModel = mongoose.model("User", userMongoose)
+
+ export const getUsers = () => userModel.find();
+ export const getUserMyEmail = ( email: string) => userModel.find();
