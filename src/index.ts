@@ -1,4 +1,4 @@
-import express, { Request, request, Response } from "express";
+import express, { Request, request, Response, Router } from "express";
 import cors from  "cors"
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
@@ -20,6 +20,7 @@ import { mongodbConnet } from "./db/database"
   app.use(compression())
   app.use(bodyParser.json())
   app.use(cookieParser());
+  app.use("/api/v1/user", UserRouter)
 
 
   app.get("/", (req: Request, res: Response)=> {
