@@ -1,7 +1,8 @@
 import express, {Request, Response } from 'express'
+import {createUser, getUserByEmail} from "../model/user"
 
 
-type registrationType {
+type registrationType =  {
     username: string,
     email: string,
     password:string
@@ -16,6 +17,23 @@ export const registor = async ( req:Request, res:Response)=> {
             })
 
         }
+
+        const existingEmail = await getUserByEmail(email)
+
+        if(existingEmail){
+            res.status(400).json({
+                message: "email  found" })
+
+        }
+
+        const user = new createUser({
+            username,
+            email,
+            authentication: {
+                password,
+                salt: ""
+            }
+        })
 
     } catch(e){
         console.log("error in registration")
