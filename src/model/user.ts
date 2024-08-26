@@ -11,6 +11,17 @@ const userSchema = new mongoose.Schema({
     }
 });
 
+  type user =  {
+     username: string 
+     email: string 
+     authentication: {
+         salt: string
+        password:  string 
+        
+     }
+
+  }
+
 // Create the User Model
 export const userModel = mongoose.model("User", userSchema);
 
@@ -29,8 +40,8 @@ export const deleteUser = (id: string) => userModel.findByIdAndDelete(id);
 export const getUserById = (id: string) => userModel.findById(id);
 
 // Create a new user
-export const createUser = (user: any) => userModel.create(user);
-
+export const createUser = (user: user) => userModel.create(user);
+ 
 // Update user by ID
 export const updateUser = (id: string, user: any) => 
     userModel.findByIdAndUpdate(id, user, { new: true });

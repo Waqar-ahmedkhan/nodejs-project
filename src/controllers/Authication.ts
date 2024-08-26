@@ -1,5 +1,6 @@
 import express, {Request, Response } from 'express'
 import {createUser, getUserByEmail} from "../model/user"
+import { authication, random } from '../helpers/helper'
 
 
 type registrationType =  {
@@ -26,13 +27,22 @@ export const registor = async ( req:Request, res:Response)=> {
 
         }
 
-        const user = new createUser({
+        const salt = random();
+
+        const user = await createUser({
             username,
             email,
             authentication: {
-                password,
-                salt: ""
+                salt,
+                password: authication(salt, password),
             }
+        })
+
+    return   res.status(200).json({
+            user_created: user,  
+            message: "created successfully",
+            status: 200,
+
         })
 
     } catch(e){
